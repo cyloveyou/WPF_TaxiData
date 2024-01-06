@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Source\Images\Cal.png" />
+    <None Remove="Source\Images\Help.png" />
+    <None Remove="Source\Images\OpenFile.png" />
+    <None Remove="Source\Images\SaveFile.png" />
+    <None Remove="Source\Images\taxi.ico" />
+    <None Remove="taxi.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Algo_TaxiData\Algo_TaxiData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Source\Images\Cal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\Images\Help.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\Images\OpenFile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\Images\SaveFile.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Source\Images\taxi.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="taxi.ico" />
+  </ItemGroup>
+
+</Project>
