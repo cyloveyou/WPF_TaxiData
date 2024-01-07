@@ -5,22 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_TaxiData"
         mc:Ignorable="d"
-        Title="出租车轨迹数据计算"
-        Height="300"
-        Width="500"
+        Title="{Binding titleText}"
+        Height="400"
+        Width="600"
         Icon="./Source/Images/taxi.ico">
-    <Border Background="GreenYellow">
-        <DockPanel LastChildFill="True" Margin="2,0,2,2">
+
+    <Border BorderBrush="LawnGreen"
+            BorderThickness="2">
+        <DockPanel LastChildFill="True">
             <ToolBar DockPanel.Dock="Top">
-                <Button >
+
+                <Button x:Name="BtOpenFile"
+                        Click="BtOpenFile_Click">
                     <WrapPanel>
-                        <Image Source="./Source/Images/OpenFile2.png" Width="15" Height="15" />
+                        <Image Source="./Source/Images/OpenFile.png"
+                               Width="15"
+                               Height="15" />
                         <TextBlock Text="打开"
                                    VerticalAlignment="Center" />
                     </WrapPanel>
                 </Button>
 
-                <Button>
+                <Button x:Name="BtCal"
+                        Click="BtCal_Click">
                     <WrapPanel>
                         <Image Source="./Source/Images/Cal.png"
                                Width="15"
@@ -30,7 +37,8 @@
                     </WrapPanel>
                 </Button>
 
-                <Button>
+                <Button x:Name="BtSaveFile"
+                        Click="BtSaveFile_Click_1">
                     <WrapPanel>
                         <Image Source="./Source/Images/SaveFile.png"
                                Width="15"
@@ -39,8 +47,11 @@
                                    VerticalAlignment="Center" />
                     </WrapPanel>
                 </Button>
+                <Separator />
 
-                <Button>
+
+                <Button x:Name="BtHelp"
+                        Click="BtHelp_Click">
                     <WrapPanel>
                         <Image Source="./Source/Images/Help.png"
                                Width="15"
@@ -52,14 +63,24 @@
             </ToolBar>
             <StatusBar DockPanel.Dock="Bottom"
                        Height="30"
+                       HorizontalContentAlignment="Center"
                        Background="AliceBlue">
-                <Label Content="{}"></Label>
+                <Label Content="{Binding StatusLabel}"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="10,0,0,0" />
             </StatusBar>
-            <Grid>
-                <TextBox Text="{}">
 
-                </TextBox>
-            </Grid>
+            <Border BorderBrush="Red"
+                    BorderThickness="1">
+                <Grid>
+                    <TextBox Text="{Binding ShowText}"
+                             FontSize="14"
+                             IsReadOnly="{Binding IsCal}">
+
+                    </TextBox>
+                </Grid>
+            </Border>
         </DockPanel>
 
     </Border>

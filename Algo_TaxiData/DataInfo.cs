@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Algo_TaxiData
 {
-   
-
     public class DataInfo
     {
         public string TaxiID;
@@ -27,4 +25,6 @@ namespace Algo_TaxiData
             this.MJD = timeUTC.funMJD();
         }
     }
+
+    
 }

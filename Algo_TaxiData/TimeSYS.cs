@@ -9,10 +9,12 @@ namespace Algo_TaxiData
     public class TimeSYS
     {
         public DateTime dtUTC;
+        public double mjd;
 
         private TimeSYS(DateTime dt)
         {
             this.dtUTC = dt;
+            this.mjd = funMJD();
         }
 
         public static TimeSYS CreateFromUTC(int year, int month, int day,
@@ -32,7 +34,8 @@ namespace Algo_TaxiData
 
         public static TimeSYS CreateFromBJStr(string BJStr)
         {
-            DateTime dtBJ = DateTime.ParseExact(BJStr, "yyyyMMddHHmmss", System.Globalization.CultureInfo.CurrentCulture);
+            DateTime dtBJ = DateTime.ParseExact(BJStr.Trim(), "yyyyMMddHHmmss",
+                System.Globalization.CultureInfo.CurrentCulture);
             DateTime dtUTC = dtBJ.AddHours(-8);     //将北京时间转为UTC
 
             return new TimeSYS(dtUTC);
@@ -40,13 +43,22 @@ namespace Algo_TaxiData
 
         public double funMJD()
         {
-            int t1 = (7 / 4 * ((int)(this.dtUTC.Minute + 9) / 12));
-            int t2 = 275 * this.dtUTC.Minute / 9;
+            int t1 = (int)((this.dtUTC.Month + 9.0) / 12.0);
+            int t2 = (int)(7.0 / 4.0 * (this.dtUTC.Year + t1));
+            int t3 = (int)(275.0 * this.dtUTC.Month / 9.0);
 
-            double mjd = -678987 + 367 * this.dtUTC.Year - t1 + t2 + this.dtUTC.Day +
-                this.dtUTC.Hour / 24.0 + this.dtUTC.Minute / 1440.0 + this.dtUTC.Second / 86400.0;
+            double mjd = -678987.0 + 367.0 * this.dtUTC.Year * 1.0
+                - t2 + t3
+                + this.dtUTC.Day
+                + this.dtUTC.Hour / 24.0
+                + this.dtUTC.Minute / 1440.0
+                + this.dtUTC.Second / 86400.0;
             return mjd;
         }
 
+        public static double  deltaUTC(TimeSYS lastTime, TimeSYS nowTime)
+        {
+            return (nowTime.dtUTC - lastTime.dtUTC).TotalSeconds;
+        }
     }
 }
